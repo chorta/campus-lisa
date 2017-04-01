@@ -40,9 +40,19 @@
 
 .slot-container {
     display: block;
+    margin: 10px 0;
     overflow: hidden;
     position: relative;
     width: 100%;
+}
+
+.schedule-container div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.col-sm-12.cell {
+    padding: 0px;
 }
 
 .time {
@@ -52,7 +62,7 @@
     overflow: hidden;
     position: relative;
     text-align: center !important;
-    width: 16%;
+    /*width: 16%;*/
 }
 
 .detail-full {
@@ -85,7 +95,7 @@
 .cell {
     background-color: #f4f8fa;
     float:left;
-    margin: .5%;
+    /*margin: .5%;*/
     /*padding: .5%;*/
     text-align:left;
 }
@@ -136,8 +146,8 @@ a.show_hide {
 }
 
 
-#tap { 
-        display: none; 
+#tap {
+        display: none;
      }
 
 @media screen and (max-width: 500px) {
@@ -146,25 +156,25 @@ a.show_hide {
         background-color: #bdddee !important;
         font-weight: bold;
         width: 100%;
-        
-        -webkit-transition: all 0.3s ease-out; 
-        -moz-transition: all 0.3s ease-out; 
-        -o-transition: all 0.3s ease-out; 
+
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out;
 
     }
-    
+
     .time p {
     color: #3b5563;
     margin: 5px auto !important;
     }
-    
+
     .cell {
-        width: 100%;        
+        width: 100%;
     }
-    
-    #tap { 
-        display: block; 
+
+    #tap {
+        display: block;
      }
 
 }
