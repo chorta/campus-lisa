@@ -1,0 +1,170 @@
+#schedule-container {
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.dev-banner {
+    background: #23B1CE;
+    position: relative;
+    padding: 3px 3px 3px 20px;
+    color: #FFF;
+    font-weight: 500;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: 1px 2px 1px #ccc;
+}
+
+.wiac-banner {
+    background: #E87E0C;
+    position: relative;
+    padding: 3px 3px 3px 20px;
+    color: #FFF;
+    font-weight: 500;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: 1px 2px 1px #ccc;
+}
+
+.vendor-banner {
+    background: #A169E8;
+    position: relative;
+    padding: 3px 3px 3px 20px;
+    color: #FFF;
+    font-weight: 500;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: 1px 2px 1px #ccc;
+}
+
+.slot-container {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.time {
+    background-color: #FFF !important;
+    border-top: 1px solid #e3e0e0;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center !important;
+    width: 16%;
+}
+
+.detail-full {
+    overflow: hidden;
+    position: relative;
+    width: 81%;
+}
+
+.detail-split {
+    overflow: hidden;
+    min-height: 125px;
+    position: relative;
+    width: 40%;
+}
+
+.detail-third {
+    overflow: hidden;
+    min-height: 130px;
+    position: relative;
+    width: 26.375%;
+}
+
+.detail-fourth {
+    overflow: hidden;
+    min-height: 130px;
+    position: relative;
+    width: 19.5%;
+}
+
+.cell {
+    background-color: #f4f8fa;
+    float:left;
+    margin: .5%;
+    /*padding: .5%;*/
+    text-align:left;
+}
+
+.break {
+    background-color: #f5f5f5 !important;
+}
+
+.time p {
+    margin: 15px auto !important;
+}
+
+.cell p {
+    margin: 15px 0 15px 20px;
+}
+
+.title {
+    color:#333;
+    font-weight: bold;
+    text-shadow: 1px 2px 1px #ccc;
+}
+
+.style {
+    background-color: #f8f8f8;
+    font-size: 13px;
+    padding:15px;
+    margin-top:10px;
+    border-bottom:5px solid #176f96;
+    display:none;
+}
+
+.style p {
+    margin: 0 0 0 0;
+}
+
+a.show_hide {
+    background-color:  #dbe9f0;
+    color: #109ae3;
+    display: block;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    width: 65px;
+}
+
+.show_hide {
+    margin: 0 0 10px 20px;
+}
+
+
+#tap { 
+        display: none; 
+     }
+
+@media screen and (max-width: 500px) {
+
+    .time {
+        background-color: #bdddee !important;
+        font-weight: bold;
+        width: 100%;
+        
+        -webkit-transition: all 0.3s ease-out; 
+        -moz-transition: all 0.3s ease-out; 
+        -o-transition: all 0.3s ease-out; 
+        transition: all 0.3s ease-out;
+
+    }
+    
+    .time p {
+    color: #3b5563;
+    margin: 5px auto !important;
+    }
+    
+    .cell {
+        width: 100%;        
+    }
+    
+    #tap { 
+        display: block; 
+     }
+
+}

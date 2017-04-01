@@ -1,0 +1,109 @@
+<system-data-structure>
+    <timeslots>
+        <timeslot>
+            <time-start>1490626800000</time-start>
+            <end-time>1490628600000</end-time>
+            <talk-type>Default</talk-type>
+            <talk-keynote>
+                <location/>
+                <welcome-remarks/>
+                <keynote-address/>
+                <speaker-shortdesc/>
+                <full-description/>
+                <stream-link/>
+            </talk-keynote>
+            <talk-default>
+                <col-size>1</col-size>
+                <bg-color>Blue</bg-color>
+                <top-label>No</top-label>
+                <label/>
+                <location>Rady School of Management Courtyard</location>
+                <talk-title>Check-in / Registration</talk-title>
+                <speaker-shortdesc/>
+                <full-description/>
+                <stream-link/>
+            </talk-default>
+        </timeslot>
+        <timeslot>
+            <time-start>1490628600000</time-start>
+            <end-time>1490633100000</end-time>
+            <talk-type>Keynote</talk-type>
+            <talk-keynote>
+                <location>Beyster Auditorium</location>
+                <welcome-remarks>Chris Longhurst</welcome-remarks>
+                <keynote-address>Vince Kellen</keynote-address>
+                <speaker-shortdesc>Objects in the Future are Closer than They Appear: The Future of Higher Ed &amp; IT</speaker-shortdesc>
+                <full-description>Objects in the Future are Closer than They Appear: The Future of Higher Ed &amp; IT</full-description>
+                <stream-link/>
+            </talk-keynote>
+            <talk-default>
+                <col-size>1</col-size>
+                <bg-color>Blue</bg-color>
+                <top-label>No</top-label>
+                <label/>
+                <location/>
+                <talk-title/>
+                <speaker-shortdesc/>
+                <full-description/>
+                <stream-link/>
+            </talk-default>
+        </timeslot>
+        <timeslot>
+            <time-start>1490634900000</time-start>
+            <end-time>1490637900000</end-time>
+            <talk-type>Default</talk-type>
+            <talk-keynote>
+                <location/>
+                <welcome-remarks/>
+                <keynote-address/>
+                <speaker-shortdesc/>
+                <full-description/>
+                <stream-link/>
+            </talk-keynote>
+            <talk-default>
+                <col-size>4</col-size>
+                <bg-color>Blue</bg-color>
+                <top-label>No</top-label>
+                <label/>
+                <location>1</location>
+                <talk-title>1</talk-title>
+                <speaker-shortdesc>1</speaker-shortdesc>
+                <full-description>1</full-description>
+                <stream-link>1</stream-link>
+            </talk-default>
+            <talk-default>
+                <col-size>4</col-size>
+                <bg-color>Blue</bg-color>
+                <top-label>Yes</top-label>
+                <label>Dev Talk</label>
+                <location>2</location>
+                <talk-title>2</talk-title>
+                <speaker-shortdesc>2</speaker-shortdesc>
+                <full-description>2</full-description>
+                <stream-link/>
+            </talk-default>
+            <talk-default>
+                <col-size>4</col-size>
+                <bg-color>Blue</bg-color>
+                <top-label>No</top-label>
+                <label/>
+                <location>3</location>
+                <talk-title>3</talk-title>
+                <speaker-shortdesc>3</speaker-shortdesc>
+                <full-description>3</full-description>
+                <stream-link/>
+            </talk-default>
+            <talk-default>
+                <col-size>4</col-size>
+                <bg-color>Blue</bg-color>
+                <top-label>No</top-label>
+                <label/>
+                <location>4</location>
+                <talk-title>4</talk-title>
+                <speaker-shortdesc>4</speaker-shortdesc>
+                <full-description>4</full-description>
+                <stream-link/>
+            </talk-default>
+        </timeslot>
+    </timeslots>
+</system-data-structure>
