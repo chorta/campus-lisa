@@ -51,9 +51,11 @@
     padding-right: 5px;
 }
 
+/*
 .col-sm-12.cell {
     padding: 0px;
 }
+*/
 
 .time {
     background-color: #FFF !important;
@@ -98,6 +100,7 @@
     /*margin: .5%;*/
     /*padding: .5%;*/
     text-align:left;
+    padding: 15px 20px !important;
 }
 
 .break {
@@ -108,9 +111,10 @@
     margin: 15px auto !important;
 }
 
-.cell p {
+/*.cell p {
     margin: 15px 0 15px 20px;
 }
+*/
 
 .title {
     color:#333;
@@ -124,6 +128,8 @@
     padding:15px;
     margin-top:10px;
     border-bottom:5px solid #176f96;
+    position: relative;
+    clear: both;
     display:none;
 }
 
