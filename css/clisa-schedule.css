@@ -97,10 +97,10 @@
 .cell {
     background-color: #f4f8fa;
     float:left;
-    /*margin: .5%;*/
+    margin: 0;
     /*padding: .5%;*/
     text-align:left;
-    padding: 15px 20px !important;
+    padding: 10px 13px !important;
 }
 
 .break {
@@ -111,10 +111,10 @@
     margin: 15px auto !important;
 }
 
-/*.cell p {
-    margin: 15px 0 15px 20px;
+.cell p {
+    margin: 3px 0 !important;
 }
-*/
+
 
 .title {
     color:#333;
@@ -127,6 +127,7 @@
     font-size: 13px;
     padding:15px;
     margin-top:10px;
+    border-top: 1px solid #dae5ea;
     border-bottom:5px solid #176f96;
     position: relative;
     clear: both;
@@ -141,6 +142,7 @@ a.show_hide {
     background-color:  #dbe9f0;
     color: #109ae3;
     display: block;
+    margin: 10px 0 0;
     padding: 3px;
     text-align: center;
     text-decoration: none;
