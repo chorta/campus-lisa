@@ -158,6 +158,28 @@ a.show_hide {
         display: none;
      }
 
+@media screen and (max-width: 769px) {
+
+    .cell,.time{
+    width: 100%;
+    }
+
+    .res-ctrl {
+    overflow: hidden;
+    margin-bottom: 10px;
+    width: 100%;
+    }
+
+    .schedule-container div {
+    padding-left: 0;
+    padding-right: 0;
+    }
+
+    .t-banner {
+      padding: 5px !important;
+    }
+
+}
 @media screen and (max-width: 500px) {
 
     .time {
