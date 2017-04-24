@@ -1,0 +1,104 @@
+#*
+Script: Conference Schedule VM script
+Author: Cristian Horta
+Date: 03/27/17
+*##*
+*##set($timeSlots = $_XPathTool.selectNodes($contentRoot, '//system-data-structure/timeslots/timeslot'))#*
+*##macro (JSONEscape $str)$str.replace("${_EscapeTool.backslash}", "\\${_EscapeTool.backslash}").replaceAll("\n", "\\n")#end#*
+
+
+*#{
+"schedule":{#*
+
+
+*##foreach($timeSlot in $timeSlots)#*
+
+*##set($startRawTime = $timeSlot.getChild('time-start').value)#*
+*##set($endRawTime = $timeSlot.getChild('end-time').value)#*
+*##set($talkType = $timeSlot.getChild('talk-type').text)#*
+*##set($colSize = $timeSlot.getChild('col-size').text)#*
+
+
+
+*##set ($startTime = $_DateTool.getDate($startRawTime))#*
+
+*##set ($endTime = $_DateTool.getDate($endRawTime))#*
+
+
+
+*##if($talkType == 'Default')#*
+
+
+*##macro(defaultCols)#*
+
+*##set($slotCols = $_XPathTool.selectNodes($timeSlot, 'talk-default'))#*
+
+*##foreach($slotCol in $slotCols)#*
+
+*##set($bgColor = $slotCol.getChild('bg-color').text)#*
+*##set($topLabelCheck = $slotCol.getChild('top-label').text)#*
+*##set($location = $slotCol.getChild('location').text)#*
+*##set($talkTitle = $slotCol.getChild('talk-title').text)#*
+*##set($speakerShortDesc = $slotCol.getChild('speaker-shortdesc').value)#*
+*##set($speakerFullDesc = $slotCol.getChild('full-description').value)#*
+*##set($streamLink = $slotCol.getChild('stream-link').text)#*
+*##set($$speakerShortDesc_serialize = "#JSONEscape($speakerShortDesc)")#*
+*##set($speakerFullDesc_serialize = "#JSONEscape($speakerFullDesc)")#*
+
+
+*##set($topLabel ="")#*
+
+*##if($topLabelCheck == "Yes")#*
+*##set($topLabel = $slotCol.getChild('label').text)#*
+*##else#*
+*##set($topLabel = "")#*
+*##end#*
+*##set($colCount = $foreach.count)
+        "session": {
+        "top-label":"$topLabelCheck",
+        "label":"$topLabel",
+        "location":"$location",
+        "talk-title":"$_EscapeTool.xml($talkTitle)",
+        "speaker-shortdesc":"$_EscapeTool.xml($speakerShortDesc_serialize)",
+        "full-description":"$_EscapeTool.xml($speakerFullDesc_serialize)"
+        }#if( $foreach.hasNext ), #else#end#*
+*##end#*
+*##end#*
+*##elseif($talkType == 'Keynote')#*
+*##set($kColSize = "12")#*
+*##set($welcomeRemarks = $timeSlot.getChild('talk-keynote').getChild('welcome-remarks').text)#*
+*##set($keynoteAddress = $timeSlot.getChild('talk-keynote').getChild('keynote-address').text)#*
+*##set($KeySpeakerShortDesc = $timeSlot.getChild('talk-keynote').getChild('speaker-shortdesc').value)#*
+*##set($KeyFullDescription = $timeSlot.getChild('talk-keynote').getChild('full-description').value)#*
+*##set($KeySpeakerShortDesc_serialize = "#JSONEscape($KeySpeakerShortDesc)")#*
+*##set($KeyFullDescription_serialize = "#JSONEscape($KeyFullDescription)")#*
+
+*##macro(keynoteCol)#*
+      *#"session": {
+        "location":"$location",
+        "welcome-remarks":"$_EscapeTool.xml($welcomeRemarks)",
+        "keynote-address":"$_EscapeTool.xml($keynoteAddress)",
+        "speaker-shortdesc":"$_EscapeTool.xml($KeySpeakerShortDesc_serialize)",
+        "full-description":"$_EscapeTool.xml($KeyFullDescription_serialize)"
+        }#*
+*##end#*
+
+*##end
+
+    "timeslot": {
+    "time-start": "$startRawTime",
+    "end-time": "$endRawTime",
+    "talk-type": "$talkType",
+    "sessions":[{#**##if($talkType == 'Default')
+
+#defaultCols#*
+          *##else#*
+            *##keynoteCol#*
+            *##end#*
+    *#
+    }]
+    }#if( $foreach.hasNext ), #else#end
+    #end
+
+}
+}
