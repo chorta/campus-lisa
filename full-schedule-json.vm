@@ -4,7 +4,7 @@ Author: Cristian Horta
 Date: 03/27/17
 *##*
 *##set($timeSlots = $_XPathTool.selectNodes($contentRoot, '//system-data-structure/timeslots/timeslot'))#*
-*##macro (JSONEscape $str)$str.replace("${_EscapeTool.backslash}", "\\${_EscapeTool.backslash}").replaceAll("\n", "\\n")#end#*
+*##macro (JSONEscape $str)$str.replace("${_EscapeTool.backslash}", "\\${_EscapeTool.backslash}").replace("${_EscapeTool.quote}", "\\${_EscapeTool.quote}").replace("'", "\'").replaceAll("\n", "\\n")#end#*
 
 
 *#{
@@ -12,6 +12,7 @@ Date: 03/27/17
 
 
 *##foreach($timeSlot in $timeSlots)#*
+*##set($loopCount = $foreach.count)#*
 
 *##set($startRawTime = $timeSlot.getChild('time-start').value)#*
 *##set($endRawTime = $timeSlot.getChild('end-time').value)#*
@@ -34,6 +35,8 @@ Date: 03/27/17
 *##set($slotCols = $_XPathTool.selectNodes($timeSlot, 'talk-default'))#*
 
 *##foreach($slotCol in $slotCols)#*
+*##set($slotLoopCount = $foreach.count)#*
+
 
 *##set($bgColor = $slotCol.getChild('bg-color').text)#*
 *##set($topLabelCheck = $slotCol.getChild('top-label').text)#*
@@ -53,8 +56,12 @@ Date: 03/27/17
 *##else#*
 *##set($topLabel = "")#*
 *##end#*
-*##set($colCount = $foreach.count)
-        "session": {
+*#
+    "${loopCount}-${slotLoopCount}": {
+        "id":"${loopCount}-${slotLoopCount}",
+        "time-start": "$startRawTime",
+        "end-time": "$endRawTime",
+        "talk-type": "$talkType",
         "top-label":"$topLabelCheck",
         "label":"$topLabel",
         "location":"$location",
@@ -74,7 +81,11 @@ Date: 03/27/17
 *##set($KeyFullDescription_serialize = "#JSONEscape($KeyFullDescription)")#*
 
 *##macro(keynoteCol)#*
-      *#"session": {
+  *#"${loopCount}-${slotLoopCount}": {
+        "id":"${loopCount}-${slotLoopCount}",
+        "time-start": "$startRawTime",
+        "end-time": "$endRawTime",
+        "talk-type": "$talkType",
         "location":"$location",
         "welcome-remarks":"$_EscapeTool.xml($welcomeRemarks)",
         "keynote-address":"$_EscapeTool.xml($keynoteAddress)",
@@ -84,21 +95,13 @@ Date: 03/27/17
 *##end#*
 
 *##end
-
-    "timeslot": {
-    "time-start": "$startRawTime",
-    "end-time": "$endRawTime",
-    "talk-type": "$talkType",
-    "sessions":[{#**##if($talkType == 'Default')
-
+    #**##if($talkType == 'Default')
 #defaultCols#*
           *##else#*
             *##keynoteCol#*
             *##end#*
-    *#
-    }]
-    }#if( $foreach.hasNext ), #else#end
+    *##if( $foreach.hasNext ), #else#end
     #end
 
-}
+    }
 }

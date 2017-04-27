@@ -1,0 +1,200 @@
+#*
+Script: Conference Schedule VM script
+Author: Cristian Horta
+Date: 03/27/17
+*#
+
+<link href="https://campuslisa.ucsd.edu/_resources/css/clisa-schedule.css" media="all" rel="stylesheet" type="text/css"/>
+
+#set($timeSlots = $_XPathTool.selectNodes($contentRoot, '//system-data-structure/timeslots/timeslot'))
+
+<section class="col-xs-12 main-section pull-right">
+    <article class="main-section-content">
+
+    #set($topContent = $_XPathTool.selectSingleNode($contentRoot, '//top-content'))
+    #set($bottomContent = $_XPathTool.selectSingleNode($contentRoot, '//bottom-content'))
+
+
+    <div>
+    $_SerializerTool.serialize($topContent, true)
+    </div>
+
+    <div class="schedule-container">
+
+        #foreach($timeSlot in $timeSlots)
+
+
+
+        #set($startRawTime = $timeSlot.getChild('time-start').value)
+        #set($endRawTime = $timeSlot.getChild('end-time').value)
+        #set($talkType = $timeSlot.getChild('talk-type').text)
+        ##set($colSize = $timeSlot.getChild('col-size').text)
+
+        ## convert date
+
+        #set ($startTime = $_DateTool.getDate($startRawTime))
+        #set ($endTime = $_DateTool.getDate($endRawTime))
+
+
+
+
+        #set($slotCount = $foreach.count)
+
+
+        #if($talkType == 'Default')
+
+
+         #macro(defaultCols)
+
+            #set($slotCols = $_XPathTool.selectNodes($timeSlot, 'talk-default'))
+
+
+
+             ## set column widths
+
+            #if($slotCols.size() == "1")
+                #set($SlotSize = "12")
+            #elseif($slotCols.size() == "2")
+                #set($SlotSize = "6")
+            #elseif($slotCols.size() == "3")
+                #set($SlotSize = "4")
+            #elseif($slotCols.size() == "4")
+                #set($SlotSize = "3")
+            #end
+
+            #foreach($slotCol in $slotCols)
+
+                 #set($bgColor = $slotCol.getChild('bg-color').text)
+                 #set($topLabelCheck = $slotCol.getChild('top-label').text)
+                 #set($location = $slotCol.getChild('location').text)
+                 #set($talkTitle = $slotCol.getChild('talk-title').text)
+                 #set($speakerShortDesc = $slotCol.getChild('speaker-shortdesc').text)
+                 #set($speakerFullDesc = $slotCol.getChild('full-description').text)
+                 #set($streamLink = $slotCol.getChild('stream-link').text)
+
+                ##Cell style for Breaks
+                #set($cellStle = '')
+
+                #if($bgColor != 'Blue')
+                    #set($cellStle = 'break')
+                #else
+                    #set($cellStle = '')
+                #end
+
+                ##Cell style for Breaks
+
+                #set($topLabel ="")
+
+                 #if($topLabelCheck == "Yes")
+                    #set($topLabel = $slotCol.getChild('label').text)
+                 #end
+
+                 #set($colCount = $foreach.count)
+
+                 #set($topLabelClass = "")
+
+                 ##set top banner class
+                #if($topLabel == "Vendor Talk")
+                    #set($topLabelClass = "vendor-banner")
+                #elseif($topLabel == "Dev Talk")
+                    #set($topLabelClass = "dev-banner")
+                #end
+
+                <div class="col-sm-$SlotSize res-ctrl">
+                #if($topLabelCheck == "Yes")<div class="${topLabelClass} t-banner">$_EscapeTool.xml($topLabel)</div>#end
+                <div class="col-sm-12 cell $cellStle">
+
+
+
+                    #if($location != "")<p>$_EscapeTool.xml($location)</p>#end
+
+                    <span class="title" alt="talk short description" ><p>$_EscapeTool.xml($talkTitle)</p></span>
+
+                    #if($speakerShortDesc != "")<p>$_EscapeTool.xml($speakerShortDesc)</p>#end
+
+                    #if($streamLink != "")<p><a href="$_EscapeTool.xml($streamLink)" alt="Link to audio and video recording">View a stream of this session</a></p>#end
+
+                    #if($speakerFullDesc != "")
+                        <a class="show_hide vt-p" href="#" rel="#slidingDiv${slotCount}-${colCount}">+ more</a>
+                    #end
+                </div>
+
+                        #if($speakerFullDesc != "")
+                        <div class="style" id="slidingDiv${slotCount}-${colCount}" style="display: none;">
+                        <p>$_EscapeTool.xml($speakerFullDesc)</p>
+                        </div>
+                        #end
+                </div>
+
+             #end
+
+         #end
+
+        #elseif($talkType == 'Keynote')
+
+         #set($kColSize = "12")
+         #set($keynoteLocation = $timeSlot.getChild('talk-keynote').getChild('location').text)
+         #set($welcomeRemarks = $timeSlot.getChild('talk-keynote').getChild('welcome-remarks').text)
+         #set($keynoteAddress = $timeSlot.getChild('talk-keynote').getChild('keynote-address').text)
+         #set($KeyTalkTilte = $timeSlot.getChild('talk-keynote').getChild('talk-title').text)
+         #set($KeySpeakerShortDesc = $timeSlot.getChild('talk-keynote').getChild('speaker-shortdesc').text)
+         #set($KeySpeakerFullDesc = $timeSlot.getChild('talk-keynote').getChild('full-description').text)
+         #set($KeyStreamLink = $timeSlot.getChild('talk-keynote').getChild('stream-link').text)
+
+                #macro(keynoteCol)
+                    <div class="col-sm-$kColSize">
+                    <div class="col-sm-12 cell">
+
+                    #if($keynoteLocation != "")<p>$_EscapeTool.xml($keynoteLocation)</p>#end
+
+                    #if($welcomeRemarks != "")<p><strong>Welcome Remarks:</strong> $_EscapeTool.xml($welcomeRemarks)</p>#end
+
+                    #if($welcomeRemarks != "")<p><strong>Keynote Address:</strong> $_EscapeTool.xml($welcomeRemarks)</p>#end
+
+                    #if($KeySpeakerShortDesc != "")<p>$_EscapeTool.xml($KeySpeakerShortDesc)</p>#end
+
+                    #if($KeyStreamLink != "")<a href="$_EscapeTool.xml($streamLink)" alt="Link to audio and video recording">View a stream of this session</a>#end
+
+
+
+                        #if($KeySpeakerFullDesc != "")
+                        <a class="show_hide vt-p" href="#" rel="#slidingDiv${slotCount}-${colCount}k">+ more</a>
+                        #end
+
+                    </div>
+                    #if($KeySpeakerFullDesc != "")
+                        <div class="style" id="slidingDiv${slotCount}-${colCount}k" style="display: none;">
+                        <p>$_EscapeTool.xml($KeySpeakerFullDesc)</p>
+                        </div>
+                    #end
+                    </div>
+                 #end
+
+        #end
+
+
+
+            #set($slotCount = $foreach.count)
+
+            <div class="slot-container" data-endtime="$endRawTime">
+                <div class="col-sm-2 time"><p>$_DateTool.format('h:mm a', $startTime) - $_DateTool.format('h:mm a', $endTime)</p></div>
+                <div class="col-sm-10">
+                    #if($talkType == 'Default')
+                    #defaultCols
+                    #else
+                    #keynoteCol
+                    #end
+                </div>
+
+            </div>
+
+        #end
+
+    <div>
+    $_SerializerTool.serialize($bottomContent, true)
+    </div>
+
+    </div>
+
+    </article>
+</section>
