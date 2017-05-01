@@ -6,8 +6,8 @@ $( document ).ready(function() {
 
       var eventDate = moment($('.slot-container').first().data('endtime')).format('MM/D/YYYY');
 
-      //alert(today);
-      alert(eventDate);
+      console.log('Today:' + today);
+      console.log('Event Date:' + eventDate);
 
       if (today == eventDate) {
 
@@ -34,26 +34,26 @@ $( document ).ready(function() {
 
                       if (date < now) {
                         $(this).fadeOut();
-                        $("button").show();
+                        $("button").fadeIn();
                       }
 
-                      document.getElementById("time").innerHTML = now;
+                      //document.getElementById("time").innerHTML = now;
 
-                      alert(date);
+                      console.log('event end date:' + date);
 
                     });
 
               }, interval);
       }else{
-        alert("the event is not today, do nothin'");
+        console.log("the event is not today, do nothin'");
       }
 
 
-  $( "button" ).click(function() {
-    $( ".slot-container" ).show( "slow" );
+  $( ".schdl-btn" ).click(function() {
+    $( ".slot-container" ).fadeIn();
     clearInterval(timeCheck);
-    timeCheck = null
-    console.log("stopped the loop");
+    timeCheck = null;
+      console.log("stopped the loop");
   });
 
 });
