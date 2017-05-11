@@ -38,6 +38,17 @@
     box-shadow: 1px 2px 1px #ccc;
 }
 
+.culture-banner {
+    background: #ef4444;
+    position: relative;
+    padding: 3px 3px 3px 20px;
+    color: #FFF;
+    font-weight: 500;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: 1px 2px 1px #ccc;
+}
+
 .slot-container {
     display: block;
     margin: 10px 0;
